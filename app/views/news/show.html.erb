@@ -1,0 +1,5 @@
+<p><h3><%= @news_details[:title] %></h3></p>
+<p><%= image_tag "#{@news_details[:imageurl]}", width: "300", height: "200" %></p>
+<p><h4><%= @news_details[:body] %></h4></p>
+<p></p>
+<p><%=link_to :back, '/news'%></p>

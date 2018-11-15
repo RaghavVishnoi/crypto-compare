@@ -1,0 +1,4 @@
+min-api:
+  base_url: 'https://min-api.cryptocompare.com/data/v2/'
+  news: 
+    latest_news: 'news/?lang=EN'

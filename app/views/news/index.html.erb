@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th>S. No.</th>
+    <th>Title</th>
+    <th>Published On</th>
+    <th></th>
+  </tr>
+  <% @news_list.each_with_index do |news, index| %>
+    <tr>
+      <td><%= index+1 %></td>
+      <td><%= news[:title] %></td>
+      <td><%= Time.at(news[:published_on]) %></td>
+      <td><%=link_to :details, "/news/#{news[:id]}"%></td>
+    </tr>
+  <% end %>  
+</table>
+<%= will_paginate @news_list %>
