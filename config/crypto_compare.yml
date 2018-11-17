@@ -1,4 +1,10 @@
 min-api:
-  base_url: 'https://min-api.cryptocompare.com/data/v2/'
+  base_url: 'https://min-api.cryptocompare.com/data/'
   news: 
-    latest_news: 'news/?lang=EN'
+    latest_news: 'v2/news/?lang=EN'
+  exchange:
+    full: 'top/exchanges/full'
+    top: 'top/exchanges'
+  historical_data:
+    histominute: 'histominute'
+    histohour: 'histohour'

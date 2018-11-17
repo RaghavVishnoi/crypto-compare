@@ -65,6 +65,7 @@ GEM
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    googlecharts (1.6.12)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.1.1)
@@ -181,6 +182,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   cryptocompare
+  googlecharts
   jbuilder (~> 2.0)
   jquery-rails
   pg

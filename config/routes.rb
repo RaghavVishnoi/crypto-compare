@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'site#dashboard'
   resources :news, only: [:index, :show]
+  resources :exchanges, only: [:index]
+  get '/exchange_chart' => 'exchanges#chart_data'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

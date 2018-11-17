@@ -1,0 +1,47 @@
+<%if @exchange_list.present?%>
+  <p><b>Total Available Exchange:</b>  <%= @exchange_list.count %></p>
+  <table>
+    <tr>
+      <th>S. No.</th>
+      <th>Market</th>
+      <th>From Symbol</th>
+      <th>To Symbol</th>
+      <th>Price</th>
+      <th>Last Update</th>
+      <th>Last Volume</th>
+      <th>Volume24H</th>
+      <th>Volume24HTo</th>
+      <th>Open24H</th>
+      <th>High24H</th>
+      <th>Low24H</th>
+      <th>Change24H</th>
+      <th>Supply</th>
+      <th>MKTCap</th>
+      <th>TotalVolume24H</th>
+      <th>TotalVolume24HTo</th>
+    </tr>
+    <% @exchange_list.each_with_index do |exchange, index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><%= exchange[:MARKET] %></td>
+        <td><%= exchange[:FROMSYMBOL] %></td>
+        <td><%= exchange[:TOSYMBOL] %></td>
+        <td><%= exchange[:PRICE] %></td>
+        <td><%= Time.at(exchange[:LASTUPDATE]) %></td>
+        <td><%= exchange[:LASTVOLUME] %></td>
+        <td><%= exchange[:VOLUME24HOUR] %></td>
+        <td><%= exchange[:VOLUME24HOURTO] %></td>
+        <td><%= exchange[:OPEN24HOUR] %></td>
+        <td><%= exchange[:HIGH24HOUR] %></td>
+        <td><%= exchange[:LOW24HOUR] %></td>
+        <td><%= exchange[:CHANGE24HOUR] %></td>
+        <td><%= exchange[:SUPPLY] %></td>
+        <td><%= exchange[:MKTCAP] %></td>
+        <td><%= exchange[:TOTALVOLUME24H] %></td>
+        <td><%= exchange[:TOTALVOLUME24HTO] %></td>
+      </tr>
+    <% end %>  
+  </table>
+<%else%>
+  <h3><%= @error %></h3>
+<%end%>
