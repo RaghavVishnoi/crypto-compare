@@ -12,10 +12,11 @@ class ExchangesController < ApplicationController
 	end
 
 	def chart_data
-		response = CryptoExchange.histominute
-		@chart_data = JSON.parse(response.body).deep_symbolize_keys[:Data]
-		Time.zone = 'Central Time (US & Canada)'
-		@chart_data = @chart_data.map{|chart_details| [Time.zone.parse(Time.at(chart_details[:time]).to_s).strftime('%H:%M'), chart_details[:low], chart_details[:open], chart_details[:close], chart_details[:high]]}
+	end
+
+	def chart_details
+		@chart_data = CryptoExchange.chart_details
+		render json: @chart_data
 	end
 
 end

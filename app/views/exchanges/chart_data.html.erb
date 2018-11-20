@@ -1,23 +1,43 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-      var data = google.visualization.arrayToDataTable(JSON.parse('<%= @chart_data.to_json.html_safe -%>'), true);
-
-      var options = {
-        legend: 'none',
-        bar: { groupWidth: '40%' }, // Remove space between bars.
-        candlestick: {
-          fallingColor: { strokeWidth: 0, fill: '#0f9d58' }, // red
-          risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart(data) {
+        if(data == null || data.length < 1){
+          data = JSON.parse('<%= CryptoExchange.chart_details.to_json.html_safe -%>')
         }
-      };
+        var data = google.visualization.arrayToDataTable(data, true);
+        var options = {
+          legend: 'left',
+          bar: { groupWidth: '25%' }, // Remove space between bars.
+          candlestick: {
+            fallingColor: { strokeWidth: 0, fill: '#0f9d58' }, // red
+            risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
+          },
+          fontSize: "10"
+        };
 
-      var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
 
-      chart.draw(data, options);
-    }
+        chart.draw(data, options);
+      }
+      window.setInterval(function(){
+        $.ajax({
+          url: "/exchange_chart_details",
+          type: "GET",
+          body: {},
+          dataType: "text",
+          complete: function(){
+
+          },
+          success: function(data){
+            drawChart(JSON.parse(data))
+          },
+          error: function(){
+
+          }
+        })
+      }, 30000);
   </script>
-  <div id="chart_div" style="width: 700px; height: 500px;"></div>
+
+  <div id="chart_div" style="width: 1300px; height: 500px;"></div>
