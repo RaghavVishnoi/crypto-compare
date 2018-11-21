@@ -13,3 +13,28 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+.news-image{
+	width: 300px;
+  height: 200px;
+}
+.exchange-table{
+	width: 100%;
+  overflow-x: scroll;
+
+  table th{
+    width: 100px;
+    vertical-align: inherit;
+    padding: 10px 55px 10px;
+  }
+
+  table td{
+    width: 100px;
+    vertical-align: inherit;
+  }
+}
+.text-align-center{
+  text-align: center;
+}
+.text-align-right{
+  text-align: right;
+}

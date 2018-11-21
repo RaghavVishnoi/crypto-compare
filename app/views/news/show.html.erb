@@ -1,9 +1,14 @@
-<% if @news_details.present? %>
-	<p><h3><%= @news_details[:title] %></h3></p>
-	<p><%= image_tag "#{@news_details[:imageurl]}", width: "300", height: "200" %></p>
-	<p><h4><%= @news_details[:body] %></h4></p>
-	<p></p>
-	<p><%=link_to :back, '/news'%></p>
-<%else%>
-	<h3><%= @error %></h3>
-<%end%>	
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <div class="content"> 
+			<% if @news_details.present? %>
+				<h3><%= @news_details[:title] %></h3>
+				<%= image_tag "#{@news_details[:imageurl]}", class: 'imgr borderedbox news-image', width: "300px", height: "200px" %>
+				<p><%= @news_details[:body] %></p>
+				<p></p>
+			<%else%>
+				<h3><%= @error %></h3>
+			<%end%>
+		</div>
+  </main>
+</div>

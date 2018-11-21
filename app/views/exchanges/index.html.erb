@@ -1,47 +1,164 @@
-<%if @exchange_list.present?%>
-  <p><b>Total Available Exchange:</b>  <%= @exchange_list.count %></p>
-  <table>
-    <tr>
-      <th>S. No.</th>
-      <th>Market</th>
-      <th>From Symbol</th>
-      <th>To Symbol</th>
-      <th>Price</th>
-      <th>Last Update</th>
-      <th>Last Volume</th>
-      <th>Volume24H</th>
-      <th>Volume24HTo</th>
-      <th>Open24H</th>
-      <th>High24H</th>
-      <th>Low24H</th>
-      <th>Change24H</th>
-      <th>Supply</th>
-      <th>MKTCap</th>
-      <th>TotalVolume24H</th>
-      <th>TotalVolume24HTo</th>
-    </tr>
-    <% @exchange_list.each_with_index do |exchange, index| %>
-      <tr>
-        <td><%= index+1 %></td>
-        <td><%= exchange[:MARKET] %></td>
-        <td><%= exchange[:FROMSYMBOL] %></td>
-        <td><%= exchange[:TOSYMBOL] %></td>
-        <td><%= exchange[:PRICE] %></td>
-        <td><%= Time.at(exchange[:LASTUPDATE]) %></td>
-        <td><%= exchange[:LASTVOLUME] %></td>
-        <td><%= exchange[:VOLUME24HOUR] %></td>
-        <td><%= exchange[:VOLUME24HOURTO] %></td>
-        <td><%= exchange[:OPEN24HOUR] %></td>
-        <td><%= exchange[:HIGH24HOUR] %></td>
-        <td><%= exchange[:LOW24HOUR] %></td>
-        <td><%= exchange[:CHANGE24HOUR] %></td>
-        <td><%= exchange[:SUPPLY] %></td>
-        <td><%= exchange[:MKTCAP] %></td>
-        <td><%= exchange[:TOTALVOLUME24H] %></td>
-        <td><%= exchange[:TOTALVOLUME24HTO] %></td>
-      </tr>
-    <% end %>  
-  </table>
-<%else%>
-  <h3><%= @error %></h3>
-<%end%>
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <div class="content">
+      <div class="meters">
+        <div class="wrapper-1 wrapper" style="float: left">
+          <svg class="meter-1 meter">
+              <circle class="circle outline outline_curves-1 outline_curves" 
+              cx="50%" cy="50%"></circle>
+               
+              <circle  class="circle range low" cx="50%" cy="50%"
+              stroke="#FDE47F"></circle>
+               
+              <circle  class="circle range avg" cx="50%" cy="50%"
+              stroke="#7CCCE5"></circle>
+               
+              <circle class="circle range high" cx="50%" cy="50%"
+              stroke="#E04644"></circle>
+               
+              <circle class="circle mask" cx="50%" cy="50%" >
+              </circle>
+               
+              <circle class="circle outline outline_ends"
+              cx="50%" cy="50%"></circle>
+          </svg>
+          <img src="assets/gauge-needle.svg" alt="" class="meter_needle">
+        </div>
+        <div class="wrapper-2 wrapper" style="float: left">
+          <svg class="meter-2 meter">
+              <circle class="circle outline outline_curves-1 outline_curves" 
+              cx="50%" cy="50%"></circle>
+               
+              <circle  class="circle range low" cx="50%" cy="50%"
+              stroke="#FDE47F"></circle>
+               
+              <circle  class="circle range avg" cx="50%" cy="50%"
+              stroke="#7CCCE5"></circle>
+               
+              <circle class="circle range high" cx="50%" cy="50%"
+              stroke="#E04644"></circle>
+               
+              <circle class="circle mask" cx="50%" cy="50%" >
+              </circle>
+               
+              <circle class="circle outline outline_ends"
+              cx="50%" cy="50%"></circle>
+          </svg>
+          <img src="assets/gauge-needle.svg" alt="" class="meter_needle">
+        </div>
+        <div class="wrapper-3 wrapper" style="float: left">
+          <svg class="meter-3 meter">
+              <circle class="circle outline outline_curves-1 outline_curves" 
+              cx="50%" cy="50%"></circle>
+               
+              <circle  class="circle range low" cx="50%" cy="50%"
+              stroke="#FDE47F"></circle>
+               
+              <circle  class="circle range avg" cx="50%" cy="50%"
+              stroke="#7CCCE5"></circle>
+               
+              <circle class="circle range high" cx="50%" cy="50%"
+              stroke="#E04644"></circle>
+               
+              <circle class="circle mask" cx="50%" cy="50%" >
+              </circle>
+               
+              <circle class="circle outline outline_ends"
+              cx="50%" cy="50%"></circle>
+          </svg>
+          <img src="assets/gauge-needle.svg" alt="" class="meter_needle">
+        </div>
+      </div>  
+      <%if @exchange_list.present?%>
+        <div class="exchange-table">
+          <p><b>Total Available Exchange:</b>  <%= @total_available_exchanges %></p>
+          <table>
+            <thead>
+              <tr>
+                <th>S.No.</th>
+                <th>Market</th>
+                <th>FromSymbol</th>
+                <th>ToSymbol</th>
+                <th>Price</th>
+                <th>LastUpdate</th>
+                <th>LastVolume</th>
+                <th>Volume24H</th>
+                <th>Volume24HTo</th>
+                <th>Open24H</th>
+                <th>High24H</th>
+                <th>Low24H</th>
+                <th>Change24H</th>
+                <th>Supply</th>
+                <th>MKTCap</th>
+                <th>TotalVolume24H</th>
+                <th>TotalVolume24HTo</th>
+              </tr>
+            </thead>  
+            <tbody>    
+            <% @exchange_list.each_with_index do |exchange, index| %>                     
+              <tr>
+                <td><%= index+1 %></td>
+                <td class="text-align-center"><%= exchange[:MARKET] %></td>
+                <td class="text-align-center"><%= exchange[:FROMSYMBOL] %></td>
+                <td class="text-align-center"><%= exchange[:TOSYMBOL] %></td>
+                <td class="text-align-right"><%= exchange[:PRICE] %></td>
+                <td class="text-align-center"><%= Time.zone.parse(Time.at(exchange[:LASTUPDATE]).to_s).strftime("%d-%m-%y %H:%M") %></td>
+                <td class="text-align-right"><%= exchange[:LASTVOLUME] %></td>
+                <td class="text-align-right"><%= exchange[:VOLUME24HOUR] %></td>
+                <td class="text-align-right"><%= exchange[:VOLUME24HOURTO] %></td>
+                <td class="text-align-right"><%= exchange[:OPEN24HOUR] %></td>
+                <td class="text-align-right"><%= exchange[:HIGH24HOUR] %></td>
+                <td class="text-align-right"><%= exchange[:LOW24HOUR] %></td>
+                <td class="text-align-right"><%= exchange[:CHANGE24HOUR] %></td>
+                <td class="text-align-right"><%= exchange[:SUPPLY] %></td>
+                <td class="text-align-right"><%= exchange[:MKTCAP] %></td>
+                <td class="text-align-right"><%= exchange[:TOTALVOLUME24H] %></td>
+                <td class="text-align-right"><%= exchange[:TOTALVOLUME24HTO] %></td>
+              </tr>           
+            <% end %>
+            </tbody>    
+          </table>
+        </div>
+        <div class="digg_pagination">
+          <div class="page_info">
+            <%= page_entries_info @exchange_list %>
+          </div>
+          <%= will_paginate @exchange_list, :container => false %>
+        </div>  
+      <%else%>
+        <h3><%= @error %></h3>
+      <%end%>
+    </div>
+  </main>
+</div>      
+<script>
+$(document).ready(function(){
+  meter_circle_init('wrapper-1')
+  meter_circle_init('wrapper-2')
+  meter_circle_init('wrapper-3')
+  range_change_event('wrapper-1',50)
+  range_change_event('wrapper-2',50)
+  range_change_event('wrapper-3',50)
+  var meter1 = 30
+  var meter2 = 70
+  var meter3 = 90
+  window.setInterval(function(){
+    range_change_event('wrapper-1',meter1)
+    range_change_event('wrapper-2',meter2)
+    range_change_event('wrapper-3',meter3)
+    if(meter1 == 30){
+      meter1 = 70
+    }else{
+      meter1 = 30
+    }if(meter2 == 70){
+      meter2 = 25
+    }else{
+      meter2 = 70
+    }if(meter3 == 90){
+      meter3 = 15
+    }else{
+      meter3 = 90
+    }
+  }, 5000);
+})
+</script>

@@ -4,6 +4,8 @@ class ExchangesController < ApplicationController
 		response = CryptoExchange.full
 		if response.code == t('response.status.code.success')
 			@exchange_list = JSON.parse(response.body).deep_symbolize_keys[:Data][:Exchanges]
+			@total_available_exchanges = @exchange_list.count
+			@exchange_list = @exchange_list.paginate(:page => params[:page], per_page: EXCHANGE_PER_PAGE)
 		else
 			@error = t('response.message.errors.internal_server')
 		end
