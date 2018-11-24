@@ -24,6 +24,7 @@ en:
     status:
       code:
         success: 200
+        internal_server: 500
     message:
       errors:
         internal_server: 'Somwthing went wrong!'

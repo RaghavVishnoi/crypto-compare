@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :exchanges, only: [:index]
   get '/charts' => 'exchanges#chart_data'
   get '/exchange_chart_details' => 'exchanges#chart_details'
+  get '/exchange_trades' => 'exchanges#trades'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

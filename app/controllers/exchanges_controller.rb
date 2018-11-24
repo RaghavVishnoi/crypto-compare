@@ -21,4 +21,15 @@ class ExchangesController < ApplicationController
 		render json: @chart_data
 	end
 
+	def trades
+		trades = DEFAULT_TRADES
+		if params[:trade] != nil
+			trades = params[:trade].split(',')
+		end
+		data = CryptoExchange.trade(trades)
+		render json: {status: t('response.status.code.success'), data: data}
+	rescue StandardError => ex
+		render json: {status: t('response.status.code.internal_server'), message: ex.message}
+	end
+
 end

@@ -4,3 +4,4 @@ EXCHANGE_CHART_LIMIT=40
 EXCHANGE_PER_PAGE=25
 BTC_USD='fsym=BTC&tsym=USD'
 DEFAULT_TIME_ZONE='Central Time (US & Canada)'
+DEFAULT_TRADES = ['kucoin', 'Bithash', 'bitmex']
