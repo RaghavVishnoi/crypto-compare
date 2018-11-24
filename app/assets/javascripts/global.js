@@ -1,6 +1,4 @@
 function start_spin(element_id){
-	import {Spinner} from 'spin.js';
-
 	var opts = {
 	  lines: 13, // The number of lines to draw
 	  length: 38, // The length of each line
