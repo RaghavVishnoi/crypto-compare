@@ -15,7 +15,7 @@ function trade_data(type){
 	  	if(response['status'] == 200){
 	  		console.log(response['data'])
 	  	}else{
-	  		alert(response['message'])
+	  		console.log(response['message'])
 	  	}
 	  },
 	  error: function(){
