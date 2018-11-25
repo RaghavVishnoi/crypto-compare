@@ -31,7 +31,7 @@ function trade_data(type){
 	  			if(kucoin[1] < 4000){
 	  				meter = 80
 	  			}else{
-	  				meter = 120
+	  				meter = 100
 	  			}
 	  		}
   			range_change_event('wrapper-1',meter)
@@ -50,7 +50,7 @@ function trade_data(type){
 	  			if(bitmex[1] < 4000){
 	  				meter = 80
 	  			}else{
-	  				meter = 120
+	  				meter = 100
 	  			}
 	  		}
 	  		range_change_event('wrapper-2',meter)
@@ -68,7 +68,7 @@ function trade_data(type){
 	  			if(bithash[1] < 4000){
 	  				meter = 80
 	  			}else{
-	  				meter = 120
+	  				meter = 100
 	  			}
 	  		}
 	  		range_change_event('wrapper-3',meter)
