@@ -2,12 +2,17 @@
   <main class="hoc container clear"> 
     <div class="content">
         <div class="meters">
-          <div class="wrapper-1 wrapper" style="float: left; border-right: 1px solid #ccc">
-            <label style="position: absolute; margin-top: 152px; transform: rotate(276deg); margin-left: -33px; width: 75px;">STRONG</label>
-            <label style="position: absolute; margin-top: 50px; transform: rotate(311deg); width: 75px; margin-left: 25px;">SELL</label>
-            <label style="position: absolute; margin-left: 150px; top: 10px;">NUTRAL</label>
-            <label style="position: absolute; margin-left: 300px; margin-top: 77px; transform: rotate(54deg);">BUY</label>
-            <label style="position: absolute; position: absolute; margin-left: 322px; margin-top: 152px; transform: rotate(84deg);">STRONG</label>
+          <div class="wrapper-1 wrapper">
+            <label class="strong-sell">STRONG</label>
+            <label class="sell">SELL</label>
+            <label class="nuteral">NUTRAL</label>
+            <label class="buy">BUY</label>
+            <label class="strong-buy">STRONG</label>
+            <div class="trade-data">  
+              <label class="type"><b>...</b></label>
+              <label class="trade-name">Bithash - </label>
+              <label class="price"><b>-</b></label>
+            </div>
             <svg class="meter-1 meter">
                 <circle class="circle outline outline_curves-1 outline_curves" 
                 cx="50%" cy="50%"></circle>
@@ -27,14 +32,19 @@
                 <circle class="circle outline outline_ends"
                 cx="50%" cy="50%"></circle>
             </svg>
-            <img src="assets/gauge-needle.svg" alt="" class="meter_needle" style="right: 60px;">
+            <img src="assets/gauge-needle.svg" alt="" class="meter_needle">
           </div>
-          <div class="wrapper-2 wrapper" style="float: left; border-right: 1px solid #ccc; ">
-            <label style="position: absolute; margin-top: 152px; transform: rotate(276deg);  width: 75px;">STRONG</label>
-            <label style="position: absolute; margin-top: 50px; transform: rotate(311deg); width: 75px; margin-left: 55px;">SELL</label>
-            <label style="position: absolute; margin-left: 180px; top: 10px;">NUTRAL</label>
-            <label style="position: absolute; margin-left: 332px; margin-top: 77px; transform: rotate(54deg);">BUY</label>
-            <label style="position: absolute; position: absolute; margin-left: 350px; margin-top: 158px; transform: rotate(84deg);">STRONG</label>
+          <div class="wrapper-2 wrapper">
+            <label class="strong-sell">STRONG</label>
+            <label class="sell">SELL</label>
+            <label class="nuteral">NUTRAL</label>
+            <label class="buy">BUY</label>
+            <label class="strong-buy">STRONG</label>
+            <div class="trade-data">  
+              <label class="type"><b>...</b></label>
+              <label class="trade-name">Kucoin - </label>
+              <label class="price"><b>-</b></label>
+            </div>
             <svg class="meter-2 meter" style="margin-left: 30px;">
                 <circle class="circle outline outline_curves-1 outline_curves" 
                 cx="50%" cy="50%"></circle>
@@ -57,11 +67,16 @@
             <img src="assets/gauge-needle.svg" alt="" class="meter_needle" style="right: 30">
           </div>
           <div class="wrapper-3 wrapper" style="float: left;">
-            <label style="position: absolute; margin-top: 150px; transform: rotate(276deg); width: 75px;">STRONG</label>
-            <label style="position: absolute; margin-top: 50px; transform: rotate(311deg); width: 75px; margin-left: 60px;">SELL</label>
-            <label style="position: absolute; margin-left: 175px; top: 10px;">NUTRAL</label>
-            <label style="position: absolute; margin-left: 315px; margin-top: 60px; transform: rotate(47deg);">BUY</label>
-            <label style="position: absolute; position: absolute; margin-left: 350px; margin-top: 158px; transform: rotate(84deg);">STRONG</label>
+            <label class="strong-sell">STRONG</label>
+            <label class="sell">SELL</label>
+            <label class="nuteral">NUTRAL</label>
+            <label class="buy">BUY</label>
+            <label class="strong-buy">STRONG</label>
+            <div class="trade-data">  
+              <label class="type"><b>...</b></label>
+              <label class="trade-name">Bitmex - </label>
+              <label class="price"><b>-</b></label>
+            </div>
             <svg class="meter-3 meter" style="margin-left: 30px;">
                 <circle class="circle outline outline_curves-1 outline_curves" 
                 cx="50%" cy="50%"></circle>
@@ -148,34 +163,15 @@
 </div>      
 <script>
 $(document).ready(function(){
+  trade_data("")
   meter_circle_init('wrapper-1')
   meter_circle_init('wrapper-2')
   meter_circle_init('wrapper-3')
   range_change_event('wrapper-1',50)
   range_change_event('wrapper-2',50)
   range_change_event('wrapper-3',50)
-  var meter1 = 30
-  var meter2 = 70
-  var meter3 = 90
   window.setInterval(function(){
-    range_change_event('wrapper-1',meter1)
-    range_change_event('wrapper-2',meter2)
-    range_change_event('wrapper-3',meter3)
-    if(meter1 == 30){
-      meter1 = 70
-    }else{
-      meter1 = 30
-    }if(meter2 == 70){
-      meter2 = 25
-    }else{
-      meter2 = 70
-    }if(meter3 == 90){
-      meter3 = 15
-    }else{
-      meter3 = 90
-    }
-  }, 5000);
-})
-
-trade_data("")
+    trade_data("")
+  }, 30000);
+});
 </script>

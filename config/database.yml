@@ -18,7 +18,7 @@ development:
   host: localhost
   min_messages: warning
   pool: 2
-  timeout: 100000
+  connect_timeout: 30
   database: crypto_development
   username: postgres
 

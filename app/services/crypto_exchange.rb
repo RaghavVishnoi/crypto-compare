@@ -29,7 +29,7 @@ class CryptoExchange
 			exchange_types.each do |exchange_type|
 				pair = client.pairs(exchange_type).first
 				trade = client.trades(pair).last
-				data[exchange_type] = [trade.type, trade.price, trade.target, Time.zone.parse(Time.at(trade.timestamp).to_s)]
+				data[exchange_type] = [trade.type, trade.amount, trade.target, Time.zone.parse(Time.at(trade.timestamp).to_s)]
 			end
 			data
 		end

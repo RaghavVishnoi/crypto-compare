@@ -53,3 +53,173 @@
     width: 33% !important;
   }
 }
+
+
+.wrapper-1{
+  float: left; 
+  border-right: 1px solid #ccc;
+  .strong-sell{
+    position: absolute; 
+    margin-top: 152px; 
+    transform: rotate(276deg); 
+    margin-left: -33px; 
+    width: 75px;
+  }
+  .sell{
+    position: absolute; 
+    margin-top: 50px; 
+    transform: rotate(311deg);
+    width: 75px; 
+    margin-left: 25px;
+  }
+  .nuteral{
+    position: absolute;
+    margin-left: 150px;
+    top: 10px;
+  }
+  .buy{
+    position: absolute;
+    margin-left: 300px;
+    margin-top: 77px;
+    transform: rotate(54deg);
+  }
+  .strong-buy{
+    position: absolute;
+    position: absolute;
+    margin-left: 322px;
+    margin-top: 152px;
+    transform: rotate(84deg);
+  }
+  .trade-data{
+    position: absolute;
+    margin-top: 250px;
+    width: 400px;
+    .type{
+      margin-left: 155px;
+      color: #CD300F;
+      text-transform: uppercase;
+    }
+    .trade-name{
+      float: left;
+    }
+    .price{
+      margin-left: 280px;
+    }
+  }
+  .meter_needle{
+    right: 60px;
+  }
+}
+
+.wrapper-2{
+  float: left; 
+  border-right: 1px solid #ccc; 
+  .strong-sell{
+    position: absolute;
+    margin-top: 152px;
+    transform: rotate(276deg);
+    width: 75px;
+  }
+  .sell{
+    position: absolute;
+    margin-top: 50px;
+    transform: rotate(311deg);
+    width: 75px;
+    margin-left: 55px;
+  }
+  .nuteral{
+    position: absolute;
+    margin-left: 180px; 
+    top: 10px;
+  }
+  .buy{
+    position: absolute;
+    margin-left: 332px;
+    margin-top: 77px;
+    transform: rotate(54deg);
+  }
+  .strong-buy{
+    position: absolute;
+     margin-left: 350px;
+     margin-top: 158px;
+     transform: rotate(84deg);
+  }
+  .trade-data{
+    position: absolute;
+    margin-top: 250px;
+    width: 400px;
+    margin-left: 33px;
+    .type{
+      margin-left: 155px;
+      color: #CD300F;
+      text-transform: uppercase;
+    }
+    .trade-name{
+      float: left;
+    }
+    .price{
+      margin-left: 280px;
+    }
+  }
+  .meter_needle{
+    right: 60px;
+    margin-left: 188px;
+  }
+}
+
+.wrapper-3{
+  float: left; 
+  border-right: 1px solid #ccc; 
+  .strong-sell{
+    position: absolute;
+    margin-top: 150px;
+    transform: rotate(276deg); 
+    width: 75px;
+  }
+  .sell{
+    position: absolute; 
+    margin-top: 50px; 
+    transform: rotate(311deg); 
+    width: 75px;
+    margin-left: 60px;
+  }
+  .nuteral{
+    position: absolute; 
+    margin-left: 175px;
+    top: 10px;
+  }
+  .buy{
+    position: absolute;
+    margin-left: 315px;
+    margin-top: 60px;
+    transform: rotate(47deg);
+  }
+  .strong-buy{
+    position: absolute;
+    position: absolute;
+    margin-left: 350px;
+    margin-top: 158px;
+    transform: rotate(84deg);
+  }
+  .trade-data{
+    position: absolute;
+    margin-top: 250px;
+    width: 400px;
+    margin-left: 33px;
+    .type{
+      margin-left: 155px;
+      color: #CD300F;
+      text-transform: uppercase;
+    }
+    .trade-name{
+      float: left;
+    }
+    .price{
+      margin-left: 280px;
+    }
+  }
+  .meter_needle{
+    right: 60px;
+    margin-left: 188px;
+  }
+}
