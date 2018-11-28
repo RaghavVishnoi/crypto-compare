@@ -9,12 +9,13 @@
         var data = google.visualization.arrayToDataTable(data, true);
         var options = {
           legend: 'left',
-          bar: { groupWidth: '25%' }, // Remove space between bars.
+          bar: { groupWidth: '95%' }, // Remove space between bars.
           candlestick: {
-            fallingColor: { strokeWidth: 0, fill: '#0f9d58' }, // red
-            risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green
+            fallingColor: { strokeWidth: 0, fill: '#004411' }, // red
+            risingColor: { strokeWidth: 0, fill: '#00ad9b' }   // green
           },
           fontSize: "10"
+  
         };
 
         var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
