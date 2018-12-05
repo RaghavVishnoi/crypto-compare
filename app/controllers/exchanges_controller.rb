@@ -32,4 +32,9 @@ class ExchangesController < ApplicationController
 		render json: {status: t('response.status.code.internal_server'), message: ex.message}
 	end
 
+	def get_order_book(exchange_name)
+		client = Cryptoexchange::Client.new
+		pair = client.pairs(exchange_name).first
+	end
+
 end

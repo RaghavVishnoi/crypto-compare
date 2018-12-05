@@ -1,60 +1,319 @@
-
 <div class="wrapper row3">
   <main class="hoc container clear"> 
-    <!-- main body -->
-    <!-- ################################################################################################ -->
-    <div class="content"> 
-      <!-- ################################################################################################ -->
-      <h1>&lt;h1&gt; to &lt;h6&gt; - Headline Colour and Size Are All The Same</h1>
-      <img class="imgr borderedbox inspace-5" src="../images/demo/imgr.gif" alt="">
-      <p>Aliquatjusto quisque nam consequat doloreet vest orna partur scetur portortis nam. Metadipiscing eget facilis elit sagittis felisi eger id justo maurisus convallicitur.</p>
-      <p>Dapiensociis <a href="#">temper donec auctortortis cumsan</a> et curabitur condis lorem loborttis leo. Ipsumcommodo libero nunc at in velis tincidunt pellentum tincidunt vel lorem.</p>
-      <img class="imgl borderedbox inspace-5" src="../images/demo/imgl.gif" alt="">
-      <p>This is a W3C compliant free website template from <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a>. For full terms of use of this template please read our <a href="http://www.os-templates.com/template-terms">website template licence</a>.</p>
-      <p>You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files. For more website templates visit our <a href="http://www.os-templates.com/">free website templates</a> section.</p>
-      <p>Portortornec condimenterdum eget consectetuer condis consequam pretium pellus sed mauris enim. Puruselit mauris nulla hendimentesque elit semper nam a sapien urna sempus.</p>
-      <h1>Table(s)</h1>
-      <div class="scrollable">
-        <table>
-          <thead>
-            <tr>
-              <th>Header 1</th>
-              <th>Header 2</th>
-              <th>Header 3</th>
-              <th>Header 4</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><a href="#">Value 1</a></td>
-              <td>Value 2</td>
-              <td>Value 3</td>
-              <td>Value 4</td>
-            </tr>
-            <tr>
-              <td>Value 5</td>
-              <td>Value 6</td>
-              <td>Value 7</td>
-              <td><a href="#">Value 8</a></td>
-            </tr>
-            <tr>
-              <td>Value 9</td>
-              <td>Value 10</td>
-              <td>Value 11</td>
-              <td>Value 12</td>
-            </tr>
-            <tr>
-              <td>Value 13</td>
-              <td><a href="#">Value 14</a></td>
-              <td>Value 15</td>
-              <td>Value 16</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="dashboard-container">
+      <div class="col-sm-12">
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#deribit" onclick="toggleOrderBooks('deribit')">Deribit</a></li>
+            <li><a data-toggle="tab" href="#kraken" onclick="toggleOrderBooks('kraken')">Kraken</a></li>
+            <li><a data-toggle="tab" href="#okcoin" onclick="toggleOrderBooks('okcoin')">Okcoin</a></li>
+          </ul>
+
+           <div class="col-sm-12 orderbook">
+             <div id="deribit" class="tab-pane fade in active">
+               <div class="col-sm-12">
+                <div class="col-sm-6">
+                  <label style="margin-left: 10%; height: 30px; margin-top: 10px;">Buy</label>
+                </div>
+                <div class="col-sm-6">
+                  <label style="margin-left: 10%; height: 30px; margin-top: 10px;">Sell</label>
+                </div>
+               </div> 
+               <div class="col-sm-12">
+                <div class="col-sm-6 col-sm-offset-3">
+                  <label style="margin-left: 30%;  height: 30px; margin-top: 10px;"><%=@avg_price%></label>
+                </div>
+               </div> 
+              <script>
+                var chart = AmCharts.makeChart("chartdiv", {
+                  "type": "serial",
+                  "theme": "none",
+                  "rotate": true,
+                  "marginBottom": 50,
+                  "dataProvider": JSON.parse('<%= @deribits_details.to_json.html_safe -%>'),
+                  "startDuration": 1,
+                  "graphs": [{
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "type": "column",
+                    "valueField": "buy",
+                    "title": "Buy",
+                    "labelText": "[[value]]",
+                    "clustered": false,
+                    "labelFunction": function(item) {
+                      return Math.abs(item.values.value);
+                    },
+                    "balloonFunction": function(item) {
+                      return item.category + ": " + Math.abs(item.values.value);
+                    }
+                  }, {
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "type": "column",
+                    "valueField": "sell",
+                    "title": "Sell",
+                    "labelText": "[[value]]",
+                    "clustered": false,
+                    "labelFunction": function(item) {
+                      return Math.abs(item.values.value);
+                    },
+                    "balloonFunction": function(item) {
+                      return item.category + ": " + Math.abs(item.values.value);
+                    }
+                  }],
+                  "categoryField": "price",
+                  "categoryAxis": {
+                    "gridPosition": "start",
+                    "gridAlpha": 2,
+                    "axisAlpha": 0
+                  },
+                  "valueAxes": [{
+                    "gridAlpha": 0,
+                    "ignoreAxisWidth": true,
+                    "labelFunction": function(value) {
+                      return Math.abs(value)
+                    },
+                    "guides": [{
+                      "value": 0,
+                      "lineAlpha": 2
+                    }]
+                  }],
+                  "balloon": {
+                    "fixedPosition": true
+                  },
+                  "chartCursor": {
+                    "valueBalloonsEnabled": false,
+                    "cursorAlpha": 0.05,
+                    "fullWidth": true
+                  },
+                  "allLabels": [{
+                    "text": "Buy",
+                    "x": "28%",
+                    "y": "100%",
+                    "bold": true,
+                    "align": "middle"
+                  }, {
+                    "text": "Sell",
+                    "x": "75%",
+                    "y": "100%",
+                    "bold": true,
+                    "align": "middle"
+                  }],
+                 "export": {
+                    "enabled": false
+                  }
+
+                });
+              </script>
+              <div id="chartdiv" style="width: 100%; height: 280px;margin-top: 20px;"></div>
+
+             
+            </div>
+            <div id="kraken" class="tab-pane fade">
+              <div class="col-sm-12">
+                <div class="col-sm-6">
+                  <label style="margin-left: 30%; height: 30px; margin-top: 10px;">Buy</label>
+                </div>
+                <div class="col-sm-6">
+                  <label style="margin-left: 30%; height: 30px; margin-top: 10px;">Sell</label>
+                </div>
+               </div> 
+               <div class="col-sm-12">
+                <div class="col-sm-6 col-sm-offset-3">
+                  <label style="margin-left: 30%;  height: 30px; margin-top: 10px;"><%=@kraken_avg_price%></label>
+                </div>
+               </div> 
+              <script>
+                var chart = AmCharts.makeChart("chartdiv-kraken", {
+                  "type": "serial",
+                  "theme": "none",
+                  "rotate": true,
+                  "marginBottom": 50,
+                  "dataProvider": JSON.parse('<%= @krakens_details.to_json.html_safe -%>'),
+                  "startDuration": 1,
+                  "graphs": [{
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "type": "column",
+                    "valueField": "buy",
+                    "title": "Buy",
+                    "labelText": "[[value]]",
+                    "clustered": false,
+                    "labelFunction": function(item) {
+                      return Math.abs(item.values.value);
+                    },
+                    "balloonFunction": function(item) {
+                      return item.category + ": " + Math.abs(item.values.value);
+                    }
+                  }, {
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "type": "column",
+                    "valueField": "sell",
+                    "title": "Sell",
+                    "labelText": "[[value]]",
+                    "clustered": false,
+                    "labelFunction": function(item) {
+                      return Math.abs(item.values.value);
+                    },
+                    "balloonFunction": function(item) {
+                      return item.category + ": " + Math.abs(item.values.value);
+                    }
+                  }],
+                  "categoryField": "price",
+                  "categoryAxis": {
+                    "gridPosition": "start",
+                    "gridAlpha": 2,
+                    "axisAlpha": 0
+                  },
+                  "valueAxes": [{
+                    "gridAlpha": 0,
+                    "ignoreAxisWidth": true,
+                    "labelFunction": function(value) {
+                      return Math.abs(value)
+                    },
+                    "guides": [{
+                      "value": 0,
+                      "lineAlpha": 2
+                    }]
+                  }],
+                  "balloon": {
+                    "fixedPosition": true
+                  },
+                  "chartCursor": {
+                    "valueBalloonsEnabled": false,
+                    "cursorAlpha": 0.05,
+                    "fullWidth": true
+                  },
+                  "allLabels": [{
+                    "text": "Buy",
+                    "x": "28%",
+                    "y": "100%",
+                    "bold": true,
+                    "align": "middle"
+                  }, {
+                    "text": "Sell",
+                    "x": "75%",
+                    "y": "100%",
+                    "bold": true,
+                    "align": "middle"
+                  }],
+                 "export": {
+                    "enabled": false
+                  }
+
+                });
+              </script>
+              <div id="chartdiv-kraken" style="width: 100%; height: 280px;margin-top: 20px;"></div>
+
+            </div>
+            <div id="okcoin" class="tab-pane fade">
+                <div class="col-sm-12">
+                <div class="col-sm-6">
+                  <label style="margin-left: 30%; height: 30px; margin-top: 10px;">Buy</label>
+                </div>
+                <div class="col-sm-6">
+                  <label style="margin-left: 30%; height: 30px; margin-top: 10px;">Sell</label>
+                </div>
+               </div> 
+               <div class="col-sm-12">
+                <div class="col-sm-6 col-sm-offset-3">
+                  <label style="margin-left: 30%;  height: 30px; margin-top: 10px;"><%=@okcoin_avg_price%></label>
+                </div>
+               </div> 
+              <script>
+                var chart = AmCharts.makeChart("chartdiv-okcoin", {
+                  "type": "serial",
+                  "theme": "none",
+                  "rotate": true,
+                  "marginBottom": 50,
+                  "dataProvider": JSON.parse('<%= @okcoins_details.to_json.html_safe -%>'),
+                  "startDuration": 1,
+                  "graphs": [{
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "type": "column",
+                    "valueField": "buy",
+                    "title": "Buy",
+                    "labelText": "[[value]]",
+                    "clustered": false,
+                    "labelFunction": function(item) {
+                      return Math.abs(item.values.value);
+                    },
+                    "balloonFunction": function(item) {
+                      return item.category + ": " + Math.abs(item.values.value);
+                    }
+                  }, {
+                    "fillAlphas": 0.8,
+                    "lineAlpha": 0.2,
+                    "type": "column",
+                    "valueField": "sell",
+                    "title": "Sell",
+                    "labelText": "[[value]]",
+                    "clustered": false,
+                    "labelFunction": function(item) {
+                      return Math.abs(item.values.value);
+                    },
+                    "balloonFunction": function(item) {
+                      return item.category + ": " + Math.abs(item.values.value);
+                    }
+                  }],
+                  "categoryField": "price",
+                  "categoryAxis": {
+                    "gridPosition": "start",
+                    "gridAlpha": 2,
+                    "axisAlpha": 0
+                  },
+                  "valueAxes": [{
+                    "gridAlpha": 0,
+                    "ignoreAxisWidth": true,
+                    "labelFunction": function(value) {
+                      return Math.abs(value)
+                    },
+                    "guides": [{
+                      "value": 0,
+                      "lineAlpha": 2
+                    }]
+                  }],
+                  "balloon": {
+                    "fixedPosition": true
+                  },
+                  "chartCursor": {
+                    "valueBalloonsEnabled": false,
+                    "cursorAlpha": 0.05,
+                    "fullWidth": true
+                  },
+                  "allLabels": [{
+                    "text": "Buy",
+                    "x": "28%",
+                    "y": "100%",
+                    "bold": true,
+                    "align": "middle"
+                  }, {
+                    "text": "Sell",
+                    "x": "75%",
+                    "y": "100%",
+                    "bold": true,
+                    "align": "middle"
+                  }],
+                 "export": {
+                    "enabled": false
+                  }
+
+                });
+              </script>
+              <div id="chartdiv-okcoin" style="width: 100%; height: 280px;margin-top: 20px;"></div>         
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- ################################################################################################ -->
-    </div>
-    <!-- ################################################################################################ -->
-    <!-- / main body -->
-  </main>
+    </div>  
+  </main> 
 </div>
+<script>
+  $(document).ready(function(){
+    window.setInterval(function(){
+      $('.amcharts-chart-div a').remove();
+    }, 1000)
+  })
+</script>

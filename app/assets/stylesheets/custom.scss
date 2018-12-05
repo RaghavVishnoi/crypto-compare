@@ -38,3 +38,29 @@ tr:nth-child(even) {
 .text-align-right{
   text-align: right;
 }
+
+.dashboard-container{
+  width: 90%;
+  margin-left: 5%;
+  text-align: left;
+  .container{
+    width: 100%;
+  }
+}
+
+.orderbook{
+  height: 400px;
+  table{
+    margin: auto;
+    margin-left: 0px;
+    margin-top: 10px;
+    height: 300px;
+    tr{
+      height: 9px;
+      td{
+        padding-top: 5px;
+      }
+    }
+  }
+}
+

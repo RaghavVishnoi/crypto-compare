@@ -82,3 +82,19 @@ function trade_data(type){
 	  }
 	})
 }
+
+function toggleOrderBooks(exchange_name){
+	if(exchange_name == 'deribit'){
+		$('#deribit').attr("style", "display: block");
+		$('#kraken').attr("style", "display: none");
+		$('#okcoin').attr("style", "display: none");
+	}else if(exchange_name == 'kraken'){
+		$('#deribit').attr("style", "display: none");
+		$('#kraken').attr("style", "display: block");
+		$('#okcoin').attr("style", "display: none");
+	}else if(exchange_name == 'okcoin'){
+		$('#deribit').attr("style", "display: none");
+		$('#kraken').attr("style", "display: none");
+		$('#okcoin').attr("style", "display: block");
+	}
+}

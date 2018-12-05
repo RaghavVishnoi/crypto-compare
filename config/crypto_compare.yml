@@ -8,3 +8,12 @@ min-api:
   historical_data:
     histominute: 'histominute'
     histohour: 'histohour'
+deribit-api:
+  base_url: 'https://www.deribit.com'
+  order-book: '/api/v1/public/getorderbook'
+kraken-api:
+  base_url: 'https://api.kraken.com'
+  order-book: '/0/public/Depth'
+okcoin-api:
+  base_url: 'https://www.okcoin.com'
+  order-book: '/api/v1/depth.do'

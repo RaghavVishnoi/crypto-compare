@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'news#index'
+  root 'site#dashboard'
   resources :news, only: [:index, :show]
   resources :exchanges, only: [:index]
   get '/charts' => 'exchanges#chart_data'

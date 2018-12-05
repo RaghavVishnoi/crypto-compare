@@ -5,3 +5,6 @@ EXCHANGE_PER_PAGE=25
 BTC_USD='fsym=BTC&tsym=USD'
 DEFAULT_TIME_ZONE='Central Time (US & Canada)'
 DEFAULT_TRADES = ['kucoin', 'Bithash', 'bitmex']
+DERIBIT_INSTRUMENT = 'instrument=BTC-28DEC18-4250-P'
+KRAKEN_PAIR='pair=ADACAD'
+OKCOIN_SYMBOL='symbol=btc_usd'
