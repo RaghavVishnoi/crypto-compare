@@ -14,6 +14,7 @@ deribit-api:
 kraken-api:
   base_url: 'https://api.kraken.com'
   order-book: '/0/public/Depth'
+  ohlc: '/0/public/OHLC'
 okcoin-api:
   base_url: 'https://www.okcoin.com'
   order-book: '/api/v1/depth.do'

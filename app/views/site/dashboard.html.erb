@@ -222,6 +222,7 @@
                 </div>
                </div> 
               <script>
+                var okcoin_quantities = JSON.parse('<%=@okcoin_bids_quantities.to_json.html_safe%>')
                 var chart = AmCharts.makeChart("chartdiv-okcoin", {
                   "type": "serial",
                   "theme": "none",
@@ -238,10 +239,10 @@
                     "labelText": "[[value]]",
                     "clustered": false,
                     "labelFunction": function(item) {
-                      return Math.abs(item.values.value);
+                      return Math.abs(item.values.value)
                     },
                     "balloonFunction": function(item) {
-                      return item.category + ": " + Math.abs(item.values.value);
+                      return item.category + ": "+item['dataContext']['quantity_buy']+" - " + Math.abs(item.values.value);
                     }
                   }, {
                     "fillAlphas": 0.8,
@@ -252,10 +253,10 @@
                     "labelText": "[[value]]",
                     "clustered": false,
                     "labelFunction": function(item) {
-                      return Math.abs(item.values.value);
+                      return Math.abs(item.values.value)
                     },
                     "balloonFunction": function(item) {
-                      return item.category + ": " + Math.abs(item.values.value);
+                      return item.category + ": "+item['dataContext']['quantity_buy']+" - " + Math.abs(item.values.value);
                     }
                   }],
                   "categoryField": "price",
@@ -305,6 +306,50 @@
               <div id="chartdiv-okcoin" style="width: 100%; height: 280px;margin-top: 20px;"></div>         
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="col-sm-6">
+          <p><b>Long vs Shorts - Kraken</b></p>
+          <table>
+            <thead>
+              <th class="text-align-center">Low</th>
+              <th class="text-align-center">High</th>
+            </thead>
+            <tbody>
+              <%@kraken_ohlc.each do |ohlc|%>
+              <tr>
+                <td class="text-align-center"><%=ohlc[2]%></td>
+                <td class="text-align-center"><%=ohlc[3]%></td>
+              </tr>
+              <%end%>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-sm-6">
+          <p><b>News</b></p>
+            <table>
+              <tr>
+                <th>S. No.</th>
+                <th>Title</th>
+                <th>Published On</th>
+                <th></th>
+              </tr>
+              <% @news_list.each_with_index do |news, index| %>
+                <tr>
+                  <td><%= index+1 %></td>
+                  <td><%= news[:title] %></td>
+                  <td><%= Time.zone.parse(Time.at(news[:published_on]).to_s).strftime("%d-%m-%y %H:%M") %></td>
+                  <td>
+                    <%=link_to "/news/#{news[:id]}" do%>
+                      <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <%end%>
+                  </td>
+                </tr>
+              <% end %>  
+            </table>
         </div>
       </div>
     </div>  

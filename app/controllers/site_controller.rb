@@ -3,20 +3,24 @@ class SiteController < ApplicationController
 	def dashboard
 		@deribit_orderbook = DeribitExchange.get_order_book
 		@kraken_orderbook = KrakenExchange.get_order_book
+		@kraken_ohlc = JSON.parse(KrakenExchange.get_ohlc).deep_symbolize_keys[:result][:ADACAD][0..20]
 		@okcoin_orderbook = OkcoinExchange.get_order_book
 		@bids_okcoin = JSON.parse(@okcoin_orderbook).deep_symbolize_keys[:bids]
 		deribits_data(@deribit_orderbook)
 		kraken_data(@kraken_orderbook)
 		okcoin_data(@okcoin_orderbook)
+		@news_list = JSON.parse(CryptoNews.list.body).deep_symbolize_keys[:Data][0...NEWS_PER_PAGE]
 	rescue StandardError => ex
 		flash[:error] = ex.message
 	end
 
 	def okcoin_data(okcoin_orderbook)
 		bids_okcoin = JSON.parse(okcoin_orderbook).deep_symbolize_keys[:bids]
+		quantities_bids = bids_okcoin[0..10].sort_by{|order_book| order_book[0].to_i}
 		bids_okcoin_prices = bids_okcoin[0..10].map{|order_book| order_book[0].to_i}.sort
 		asks_okcoin = JSON.parse(okcoin_orderbook).deep_symbolize_keys[:asks]
 		asks_okcoin_prices = asks_okcoin[0..10].map{|order_book| order_book[0].to_i}.sort
+		quantities_asks = asks_okcoin[0..10].sort_by{|order_book| order_book[0].to_i}
 		okcoin_count = bids_okcoin_prices.count > asks_okcoin_prices.count ? bids_okcoin_prices.count : asks_okcoin_prices.count
 		first_buy = bids_okcoin_prices[0]
 		first_sell = asks_okcoin_prices[0]
@@ -26,6 +30,8 @@ class SiteController < ApplicationController
 			details['price'] = ''
 			details['buy'] = -(bids_okcoin_prices[i]) rescue ''
 			details['sell'] = asks_okcoin_prices[i]
+			details['quantity_buy'] = quantities_bids[i][1]
+			details['quantity_ask'] = quantities_asks[i][1]
 			@okcoins_details.push(details)
 		end
 		first_price = @okcoins_details.first

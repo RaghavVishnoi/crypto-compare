@@ -7,4 +7,11 @@ class KrakenExchange
 		RestClient.get(url, headers={})
 	end
 
+	def self.get_ohlc
+		base_url = APP_CONSTANTS['kraken-api']['base_url']
+		params = APP_CONSTANTS['kraken-api']['ohlc']+'?'+KRAKEN_PAIR
+		url = base_url+params
+		RestClient.get(url, headers={})
+	end
+
 end
